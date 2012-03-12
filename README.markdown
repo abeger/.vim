@@ -5,6 +5,7 @@ Current Plugins
 * [Project](http://www.vim.org/scripts/script.php?script_id=69)
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [SnipMate](https://github.com/garbas/vim-snipmate)
+* [NERDCommenter](https://github.com/scrooloose/nerdcommenter)
 
 Installation
 ------------
