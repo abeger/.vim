@@ -6,7 +6,7 @@ Current Plugins
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [SnipMate](https://github.com/garbas/vim-snipmate)
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter)
-* [Ack for Vim](https://github.com/mileszs/ack.vim.git) (Requires [ack](http://betterthangrep.com))
+* [Ack for Vim](https://github.com/mileszs/ack.vim) (Requires [ack](http://betterthangrep.com))
 
 Installation
 ------------
