@@ -5,9 +5,8 @@ Current Plugins
 * [NERDTree](https://github.com/scrooloose/nerdtree)
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [SnipMate](https://github.com/garbas/vim-snipmate), plus [SnipMate Snippets](https://github.com/honza/snipmate-snippets)
-    * Dependencies
-        * [vim-addon-mw-utils](https://github.com/MarcWeber/vim-addon-mw-utils)
-        * [tlib](https://github.com/tomtom/tlib_vim)
+    * Depends on [vim-addon-mw-utils](https://github.com/MarcWeber/vim-addon-mw-utils)
+    * Depends on [tlib](https://github.com/tomtom/tlib_vim)
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter)
 * [Ack for Vim](https://github.com/mileszs/ack.vim) (Requires [ack](http://betterthangrep.com))
 
