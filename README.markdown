@@ -2,7 +2,7 @@ Current Plugins
 ---------------
 
 * [Pathogen](https://github.com/tpope/vim-pathogen)
-* [Project](http://www.vim.org/scripts/script.php?script_id=69)
+* [NERDTree](https://github.com/scrooloose/nerdtree)
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [SnipMate](https://github.com/garbas/vim-snipmate)
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter)
@@ -22,3 +22,8 @@ Installation
 
 ### Install Ack (if necessary):
 See [ack.vim](https://github.com/mileszs/ack.vim) instructions.
+
+TODO
+---
+
+* Figure out how to turn off Ack plugin if Ack is not present on the system.
