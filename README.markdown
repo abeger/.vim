@@ -9,6 +9,7 @@ Current Plugins
     * Depends on [tlib](https://github.com/tomtom/tlib_vim)
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter)
 * [Ack for Vim](https://github.com/mileszs/ack.vim) (Requires [ack](http://betterthangrep.com))
+* [Fugitive](https://github.com/tpope/vim-fugitive)
 
 Installation
 ------------
