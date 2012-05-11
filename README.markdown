@@ -10,7 +10,7 @@ Current Plugins
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter)
 * [Ack for Vim](https://github.com/mileszs/ack.vim) (Requires [ack](http://betterthangrep.com))
 * [Fugitive](https://github.com/tpope/vim-fugitive)
-* [Gist.vim](https://github.com/mattn/gist-vim))
+* [Gist.vim](https://github.com/mattn/gist-vim)
     * Depends on [webapi-vim](https://github.com/mattn/webapi-vim)
 
 Installation
