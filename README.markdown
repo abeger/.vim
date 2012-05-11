@@ -26,10 +26,10 @@ Installation
     git submodule update   
 
 ### Install Ack (if necessary):
-See [ack.vim](https://github.com/mileszs/ack.vim) instructions.
+See [ack.vim](https://github.com/mileszs/ack.vim#installation) instructions.
 
 ### Configure Gist.vim:
-See [Gist.vim](https://github.com/mattn/gist-vim) instructions.
+See [Gist.vim](https://github.com/mattn/gist-vim#install) instructions.
 
 TODO
 ---
