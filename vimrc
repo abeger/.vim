@@ -12,10 +12,21 @@ endif
 
 "general settings
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
 set ruler
 
 set nocompatible
+
+"Function to set tabwidth
+function! SetTabWidth(width)
+    let &tabstop=a:width
+    let &softtabstop=a:width
+    let &shiftwidth=a:width
+endfunction
+
+"Default tabwidth
+call SetTabWidth(4)
+
+"Shorthand commands
+command! -n=1 -bar St :call SetTabWidth(<args>)
+command! -bar Nt :NERDTree
 
