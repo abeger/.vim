@@ -30,3 +30,4 @@ call SetTabWidth(4)
 command! -n=1 -bar St :call SetTabWidth(<args>)
 command! -bar Nt :NERDTree
 
+set nofoldenable
