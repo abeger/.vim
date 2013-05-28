@@ -26,8 +26,14 @@ endfunction
 "Default tabwidth
 call SetTabWidth(4)
 
+"Change window directory and execute NERDTree
+function! CdToNERDTree(dir)
+    exec 'lcd '.a:dir
+    exec 'NERDTree'
+endfunction
+
 "Shorthand commands
 command! -n=1 -bar St :call SetTabWidth(<args>)
-command! -bar Nt :NERDTree
+command! -n=? -complete=dir -bar Nt :call CdToNERDTree('<args>')
 
 set nofoldenable
