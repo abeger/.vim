@@ -12,6 +12,15 @@ Current Plugins
 * [Fugitive](https://github.com/tpope/vim-fugitive)
 * [Gist.vim](https://github.com/mattn/gist-vim)
     * Depends on [webapi-vim](https://github.com/mattn/webapi-vim)
+* [Tabular](https://github.com/godlygeek/tabular)
+
+
+Shortcuts
+---------
+
+* **St [number]**: Sets all the tab width settings to _number_
+* **Nt [dir]**: Changes working directory to _dir_ and activates NERDTree
+
 
 Installation
 ------------
