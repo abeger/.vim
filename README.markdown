@@ -13,6 +13,7 @@ Current Plugins
 * [Gist.vim](https://github.com/mattn/gist-vim)
     * Depends on [webapi-vim](https://github.com/mattn/webapi-vim)
 * [Tabular](https://github.com/godlygeek/tabular)
+* [Git Gutter](https://github.com/airblade/vim-gitgutter)
 
 
 Shortcuts
