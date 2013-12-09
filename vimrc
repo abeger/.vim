@@ -2,7 +2,17 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
-syntax on
+
+syntax enable
+
+"For Solarized color scheme
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+colorscheme solarized
+
 filetype plugin indent on
 
 "Fugitive settings
