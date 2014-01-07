@@ -8,10 +8,8 @@ syntax enable
 "For Solarized color scheme
 if has('gui_running')
     set background=light
-else
-    set background=dark
+    colorscheme solarized
 endif
-colorscheme solarized
 
 filetype plugin indent on
 
