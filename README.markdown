@@ -30,7 +30,7 @@ Installation
 ### Install Modules:
 
     cd ~
-    git clone git://github.com/abeger/.vim.git
+    git clone git@github.com:abeger/.vim.git
     ln -s .vim/vimrc .vimrc
     cd .vim
     git submodule init
