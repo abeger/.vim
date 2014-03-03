@@ -1,3 +1,17 @@
+" To disable a plugin, add it's bundle name to the following list
+" Via http://stackoverflow.com/a/5316897/56333
+let g:pathogen_disabled = []
+
+" Determine if we're running on a Mac. 
+" If not, disable Dash plugin
+" http://stackoverflow.com/a/2842811/56333
+ if has("unix")
+   let s:uname = substitute(system("uname"), '\n', '', '')
+   if s:uname != "Darwin"
+     call add(g:pathogen_disabled, 'dash')
+   endif
+ endif
+
 "Pathogen settings
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
