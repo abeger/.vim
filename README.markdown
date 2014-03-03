@@ -15,6 +15,8 @@ Current Plugins
 * [Tabular](https://github.com/godlygeek/tabular)
 * [Git Gutter](https://github.com/airblade/vim-gitgutter)
 * [Solarized Colorscheme](https://github.com/altercation/vim-colors-solarized)
+* [Dash.vim](https://github.com/rizzatti/dash.vim), (Only turned on on Macs. Requires [Dash.app](http://kapeli.com/))
+    * Depends on [funcoo.vim](https://github.com/rizzatti/dash.vim)
 
 
 Shortcuts
@@ -46,3 +48,5 @@ TODO
 ---
 
 * Figure out how to turn off Ack plugin if Ack is not present on the system.
+* Figure out how to turn off Dash plugin if Dash is not present on the system.
+* Get `Nt` with no args to default to directory of current file?
