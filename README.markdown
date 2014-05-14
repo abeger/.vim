@@ -17,6 +17,7 @@ Current Plugins
 * [Solarized Colorscheme](https://github.com/altercation/vim-colors-solarized)
 * [Dash.vim](https://github.com/rizzatti/dash.vim), (Only turned on on Macs. Requires [Dash.app](http://kapeli.com/))
     * Depends on [funcoo.vim](https://github.com/rizzatti/dash.vim)
+* [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 
 
 Shortcuts
