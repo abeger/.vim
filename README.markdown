@@ -48,6 +48,7 @@ See [Gist.vim](https://github.com/mattn/gist-vim#install) instructions.
 TODO
 ---
 
+* Try out [Vundle](https://github.com/gmarik/Vundle.vim) instead of Pathogen.
 * Figure out how to turn off Ack plugin if Ack is not present on the system.
 * Figure out how to turn off Dash plugin if Dash is not present on the system.
 * Get `Nt` with no args to default to directory of current file?
