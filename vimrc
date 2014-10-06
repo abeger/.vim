@@ -48,6 +48,9 @@ endfunction
 "Default tabwidth
 call SetTabWidth(4)
 
+"Don't show some files in NERDTree
+let NERDTreeIgnore = ['\.pyc$']
+
 "Change window directory and execute NERDTree
 function! CdToNERDTree(dir)
     exec 'lcd '.a:dir
