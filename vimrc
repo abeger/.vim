@@ -62,3 +62,7 @@ command! -n=1 -bar St :call SetTabWidth(<args>)
 command! -n=? -complete=dir -bar Nt :call CdToNERDTree('<args>')
 
 set nofoldenable
+
+autocmd VimEnter * Nt .
+"if I want it to default to the editor rather than NERDtree
+"autocmd VimEnter * wincmd p
