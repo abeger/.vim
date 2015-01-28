@@ -64,5 +64,8 @@ command! -n=? -complete=dir -bar Nt :call CdToNERDTree('<args>')
 set nofoldenable
 
 autocmd VimEnter * Nt .
-"if I want it to default to the editor rather than NERDtree
-"autocmd VimEnter * wincmd p
+"default to the editor rather than NERDtree if vim was called with a file as
+"an argument
+if argc() > 0
+    autocmd VimEnter * wincmd p
+endif
