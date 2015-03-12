@@ -2,7 +2,7 @@
 " Via http://stackoverflow.com/a/5316897/56333
 let g:pathogen_disabled = []
 
-" Determine if we're running on a Mac. 
+" Determine if we're running on a Mac.
 " If not, disable Dash plugin
 " http://stackoverflow.com/a/2842811/56333
  if has("unix")
@@ -69,3 +69,14 @@ autocmd VimEnter * Nt .
 if argc() > 0
     autocmd VimEnter * wincmd p
 endif
+
+"Disable middle mouse pastes
+nnoremap <MiddleMouse> <Nop>
+nnoremap <2-MiddleMouse> <Nop>
+nnoremap <3-MiddleMouse> <Nop>
+nnoremap <4-MiddleMouse> <Nop>
+
+inoremap <MiddleMouse> <Nop>
+inoremap <2-MiddleMouse> <Nop>
+inoremap <3-MiddleMouse> <Nop>
+inoremap <4-MiddleMouse> <Nop>
