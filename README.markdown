@@ -18,6 +18,7 @@ Current Plugins
 * [Dash.vim](https://github.com/rizzatti/dash.vim), (Only turned on on Macs. Requires [Dash.app](http://kapeli.com/))
     * Depends on [funcoo.vim](https://github.com/rizzatti/dash.vim)
 * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
+* [vim-syntax-redminewiki](https://github.com/s3rvac/vim-syntax-redminewiki)
 
 
 Shortcuts
