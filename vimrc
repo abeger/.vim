@@ -1,21 +1,56 @@
-" To disable a plugin, add it's bundle name to the following list
+set nocompatible              " be iMproved, required
+filetype on
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/tabular'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 's3rvac/vim-syntax-redminewiki'
+Plugin 'rking/ag.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" To disable a plugin, add its bundle name to the following list
 " Via http://stackoverflow.com/a/5316897/56333
-let g:pathogen_disabled = []
+" let g:pathogen_disabled = []
 
 " Determine if we're running on a Mac.
 " If not, disable Dash plugin
 " http://stackoverflow.com/a/2842811/56333
- if has("unix")
-   let s:uname = substitute(system("uname"), '\n', '', '')
-   if s:uname != "Darwin"
-     call add(g:pathogen_disabled, 'dash')
-   endif
- endif
-
-"Pathogen settings
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+" if has("unix")
+"   let s:uname = substitute(system("uname"), '\n', '', '')
+"   if s:uname != "Darwin"
+"     call add(g:pathogen_disabled, 'dash')
+"   endif
+" endif
 
 syntax enable
 
