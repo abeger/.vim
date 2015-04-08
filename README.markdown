@@ -1,7 +1,8 @@
 Current Plugins
 ---------------
 
-* [Pathogen](https://github.com/tpope/vim-pathogen)
+All plugins are managed by [Vundle](https://github.com/gmarik/Vundle.vim).
+
 * [NERDTree](https://github.com/scrooloose/nerdtree)
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [Fugitive](https://github.com/tpope/vim-fugitive)
