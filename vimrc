@@ -18,6 +18,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 's3rvac/vim-syntax-redminewiki'
 Plugin 'rking/ag.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -116,5 +117,8 @@ inoremap <2-MiddleMouse> <Nop>
 inoremap <3-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
 
-" Consider all .redmine files as Redmine wiki files.
+" Consider all .redmine files Redmine wiki files.
 au BufNewFile,BufRead *.redmine set ft=redminewiki
+
+" Consider all .md files Markdown files.
+au BufNewFile,BufRead *.md set ft=markdown
