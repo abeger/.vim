@@ -20,6 +20,14 @@ Plugin 's3rvac/vim-syntax-redminewiki'
 Plugin 'rking/ag.vim'
 Plugin 'kchmck/vim-coffee-script'
 
+"Tryouts
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround'
+Plugin 'godlygeek/csapprox'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -53,13 +61,15 @@ filetype plugin indent on    " required
 "   endif
 " endif
 
+filetype plugin on
+
 syntax enable
 
 "For Solarized color scheme
-if has('gui_running')
+"if has('gui_running')
     set background=light
     colorscheme solarized
-endif
+"endif
 
 filetype plugin indent on
 
@@ -122,3 +132,8 @@ au BufNewFile,BufRead *.redmine set ft=redminewiki
 
 " Consider all .md files Markdown files.
 au BufNewFile,BufRead *.md set ft=markdown
+
+" Mappings for CommandT
+
+noremap <leader>o <Esc>:CommandT<CR>
+noremap <leader>O <Esc>:CommandTFlush<CR>
