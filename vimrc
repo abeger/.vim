@@ -22,7 +22,6 @@ Plugin 'kchmck/vim-coffee-script'
 
 "Tryouts
 Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
@@ -137,3 +136,11 @@ au BufNewFile,BufRead *.md set ft=markdown
 
 noremap <leader>o <Esc>:CommandT<CR>
 noremap <leader>O <Esc>:CommandTFlush<CR>
+
+augroup ruby_highlighting
+    au!
+    au BufNewFile,BufRead Gemfile      set filetype=ruby
+    au BufNewFile,BufRead Gemfile.lock set filetype=ruby
+    au BufNewFile,BufRead Guardfile    set filetype=ruby
+    au BufNewFile,BufRead Capfile      set filetype=ruby
+augroup END
