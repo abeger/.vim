@@ -19,12 +19,14 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 's3rvac/vim-syntax-redminewiki'
 Plugin 'rking/ag.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'vimwiki/vimwiki'
+Plugin 'ervandew/supertab'
+
 
 "Tryouts
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-surround'
+"Plugin 'git://git.wincent.com/command-t.git'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/csapprox'
 
 " The following are examples of different formats supported.
@@ -144,3 +146,10 @@ augroup ruby_highlighting
     au BufNewFile,BufRead Guardfile    set filetype=ruby
     au BufNewFile,BufRead Capfile      set filetype=ruby
 augroup END
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                     \ 'syntax': 'markdown', 'ext': '.md'},
+                     \{'path': '~/personal_wiki/',
+                     \ 'syntax': 'markdown', 'ext': '.md'}]
+
+inoremap jk  
