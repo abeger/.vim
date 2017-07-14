@@ -1,17 +1,26 @@
 " NOTE: You must, of course, install ag / the_silver_searcher
 
-" FIXME: Delete deprecated options below on or after 15-7 (6 months from when they were changed) {{{
+" FIXME: Delete deprecated options below on or after 2016-4 (6 months from when the deprecation warning was added) {{{
 
 if exists("g:agprg")
   let g:ag_prg = g:agprg
+  echohl WarningMsg
+  call input('g:agprg is deprecated and will be removed. Please use g:ag_prg')
+  echohl None
 endif
 
 if exists("g:aghighlight")
   let g:ag_highlight = g:aghighlight
+  echohl WarningMsg
+  call input('g:aghighlight is deprecated and will be removed. Please use g:ag_highlight')
+  echohl None
 endif
 
 if exists("g:agformat")
   let g:ag_format = g:agformat
+  echohl WarningMsg
+  call input('g:agformat is deprecated and will be removed. Please use g:ag_format')
+  echohl None
 endif
 
 " }}} FIXME: Delete the deprecated options above on or after 15-7 (6 months from when they were changed)
@@ -19,7 +28,7 @@ endif
 " Location of the ag utility
 if !exists("g:ag_prg")
   " --vimgrep (consistent output we can parse) is available from version  0.25.0+
-  if split(system("ag --version"), "[ \n\r\t]")[2] =~ '\d\+.[2-9][5-9]\(.\d\+\)\?'
+  if split(system("ag --version"), "[ \n\r\t]")[2] =~ '\d\+.\(\(2[5-9]\)\|\([3-9][0-9]\)\)\(.\d\+\)\?'
     let g:ag_prg="ag --vimgrep"
   else
     " --noheading seems odd here, but see https://github.com/ggreer/the_silver_searcher/issues/361
@@ -45,6 +54,10 @@ endif
 
 if !exists("g:ag_mapping_message")
   let g:ag_mapping_message=1
+endif
+
+if !exists("g:ag_working_path_mode")
+    let g:ag_working_path_mode = 'c'
 endif
 
 function! ag#AgBuffer(cmd, args)
@@ -75,6 +88,11 @@ function! ag#Ag(cmd, args)
     let l:grepargs = a:args . join(a:000, ' ')
   end
 
+  if empty(l:grepargs)
+    echo "Usage: ':Ag {pattern}' (or just :Ag to search for the word under the cursor). See ':help :Ag' for more information."
+    return
+  endif
+
   " Format, used to manage column jump
   if a:cmd =~# '-g$'
     let s:ag_format_backup=g:ag_format
@@ -94,7 +112,20 @@ function! ag#Ag(cmd, args)
     let &grepformat=g:ag_format
     set t_ti=
     set t_te=
-    silent! execute a:cmd . " " . escape(l:grepargs, '|')
+    if g:ag_working_path_mode ==? 'r' " Try to find the projectroot for current buffer
+      let l:cwd_back = getcwd()
+      let l:cwd = s:guessProjectRoot()
+      try
+        exe "lcd ".l:cwd
+      catch
+        echom 'Failed to change directory to:'.l:cwd
+      finally
+        silent! execute a:cmd . " " . escape(l:grepargs, '|')
+        exe "lcd ".l:cwd_back
+      endtry
+    else " Someone chose an undefined value or 'c' so we revert to the default
+      silent! execute a:cmd . " " . escape(l:grepargs, '|')
+    endif
   finally
     let &grepprg=l:grepprg_bak
     let &grepformat=l:grepformat_bak
@@ -119,9 +150,9 @@ function! ag#Ag(cmd, args)
   endif
 
   " If highlighting is on, highlight the search keyword.
-  if exists("g:ag_highlight")
-    let @/=a:args
-    set hlsearch
+  if exists('g:ag_highlight')
+    let @/ = matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+    call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
   end
 
   redraw!
@@ -152,8 +183,12 @@ function! ag#Ag(cmd, args)
         echom "ag.vim keys: q=quit <cr>/e/t/h/v=enter/edit/tab/split/vsplit go/T/H/gv=preview versions of same"
       endif
     endif
-  else
+  else " Close the split window automatically:
+    cclose
+    lclose
+    echohl WarningMsg
     echom 'No matches for "'.a:args.'"'
+    echohl None
   endif
 endfunction
 
@@ -167,7 +202,7 @@ endfunction
 function! ag#GetDocLocations()
   let dp = ''
   for p in split(&runtimepath,',')
-    let p = p.'/doc/'
+    let p = p.'doc/'
     if isdirectory(p)
       let dp = p.'*.txt '.dp
     endif
@@ -178,4 +213,22 @@ endfunction
 function! ag#AgHelp(cmd,args)
   let args = a:args.' '.ag#GetDocLocations()
   call ag#Ag(a:cmd,args)
+endfunction
+
+function! s:guessProjectRoot()
+  let l:splitsearchdir = split(getcwd(), "/")
+
+  while len(l:splitsearchdir) > 2
+    let l:searchdir = '/'.join(l:splitsearchdir, '/').'/'
+    for l:marker in ['.rootdir', '.git', '.hg', '.svn', 'bzr', '_darcs', 'build.xml']
+      " found it! Return the dir
+      if filereadable(l:searchdir.l:marker) || isdirectory(l:searchdir.l:marker)
+        return l:searchdir
+      endif
+    endfor
+    let l:splitsearchdir = l:splitsearchdir[0:-2] " Splice the list to get rid of the tail directory
+  endwhile
+
+  " Nothing found, fallback to current working dir
+  return getcwd()
 endfunction

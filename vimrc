@@ -21,13 +21,18 @@ Plugin 'rking/ag.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vimwiki/vimwiki'
 Plugin 'ervandew/supertab'
+Plugin 'slim-template/vim-slim'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-syntastic/syntastic'
 
 
 "Tryouts
 "Plugin 'git://git.wincent.com/command-t.git'
 "Plugin 'scrooloose/nerdcommenter'
 "Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/csapprox'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -107,6 +112,7 @@ endfunction
 "Shorthand commands
 command! -n=1 -bar St :call SetTabWidth(<args>)
 command! -n=? -complete=dir -bar Nt :call CdToNERDTree('<args>')
+command! -n=0 -bar Ntf :NERDTreeFind
 
 set nofoldenable
 
@@ -148,8 +154,10 @@ augroup ruby_highlighting
 augroup END
 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                     \ 'syntax': 'markdown', 'ext': '.md'},
+                     \ 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1},
                      \{'path': '~/personal_wiki/',
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
+                     \ 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
 
-inoremap jk  
+inoremap jk 
+
+let g:syntastic_ruby_checkers = ['rubocop']
