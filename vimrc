@@ -161,3 +161,5 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 inoremap jk 
 
 let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_rubocop_exec = "bundle"
+let g:syntastic_ruby_rubocop_args = "exec rubocop"
