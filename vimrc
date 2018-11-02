@@ -11,6 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
 Plugin 'airblade/vim-gitgutter'
@@ -28,6 +29,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
 
+packadd! matchit
 
 "Tryouts
 "Plugin 'git://git.wincent.com/command-t.git'
@@ -72,10 +74,10 @@ filetype plugin on
 syntax enable
 
 "For Solarized color scheme
-"if has('gui_running')
+if has('gui_running')
     set background=light
     colorscheme solarized
-"endif
+endif
 
 filetype plugin indent on
 
@@ -90,38 +92,65 @@ set ruler
 
 set nocompatible
 
-"Function to set tabwidth
+" *** Unified Tab Width Changing
+
+" Change all tab widths at once
 function! SetTabWidth(width)
     let &tabstop=a:width
     let &softtabstop=a:width
     let &shiftwidth=a:width
 endfunction
 
-"Default tabwidth
+command! -n=1 -bar St :call SetTabWidth(<args>)
+
+" Set default
 call SetTabWidth(4)
+
+
+" *** NERDTree Customization
 
 "Don't show some files in NERDTree
 let NERDTreeIgnore = ['\.pyc$']
 
-"Change window directory and execute NERDTree
+" Change window directory and execute NERDTree
 function! CdToNERDTree(dir)
     exec 'lcd '.a:dir
     exec 'NERDTree'
 endfunction
 
-"Shorthand commands
-command! -n=1 -bar St :call SetTabWidth(<args>)
-command! -n=? -complete=dir -bar Nt :call CdToNERDTree('<args>')
-command! -n=0 -bar Ntf :NERDTreeFind
+" Shortcuts
+command! -n=? -complete=dir Nt :call CdToNERDTree('<args>')
+command! Ntf :NERDTreeFind
 
 set nofoldenable
 
+" Start with NERDTree running
 autocmd VimEnter * Nt .
-"default to the editor rather than NERDtree if vim was called with a file as
-"an argument
+
+" Default to the editor rather than NERDtree if vim was called with a file as
+" an argument
 if argc() > 0
     autocmd VimEnter * wincmd p
 endif
+
+
+" *** JSON Formatting
+
+" Format json files
+" Write the file if a bang was passed in
+function! JsonClean(bang)
+    exec 'silent %!python -m json.tool'
+    if v:shell_error
+        " Bail if Python returned 1
+        let error_text = join(getline(1, '$'), "\n")
+        undo
+        echo 'ERROR: ' . error_text
+    elseif a:bang == '!'
+        :w
+    end
+endfunction
+
+command! -n=0 -bang Jc :call JsonClean('<bang>')
 
 "Disable middle mouse pastes
 nnoremap <MiddleMouse> <Nop>
@@ -145,6 +174,7 @@ au BufNewFile,BufRead *.md set ft=markdown
 noremap <leader>o <Esc>:CommandT<CR>
 noremap <leader>O <Esc>:CommandTFlush<CR>
 
+" Adding highlighting for Ruby files not ending in .rb
 augroup ruby_highlighting
     au!
     au BufNewFile,BufRead Gemfile      set filetype=ruby
@@ -153,13 +183,28 @@ augroup ruby_highlighting
     au BufNewFile,BufRead Capfile      set filetype=ruby
 augroup END
 
+" Vimwiki config
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                      \ 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1},
                      \{'path': '~/personal_wiki/',
                      \ 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
 
-inoremap jk 
+let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
+" Vimwiki Tagbar integration
+let g:tagbar_type_vimwiki = {
+          \   'ctagstype':'vimwiki'
+          \ , 'kinds':['h:header']
+          \ , 'sro':'&&&'
+          \ , 'kind2scope':{'h':'header'}
+          \ , 'sort':0
+          \ , 'ctagsbin': s:vimdir.'/scripts/vwtags.py'
+          \ , 'ctagsargs': 'markdown'
+          \ }
+
+" Syntastic config
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_ruby_rubocop_exec = "bundle"
 let g:syntastic_ruby_rubocop_args = "exec rubocop"
+
+let g:syntastic_php_phpcs_args = "--standard=PSR2 -n"
