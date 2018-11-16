@@ -134,14 +134,14 @@ if argc() > 0
 endif
 
 
-" *** JSON Formatting
+" *** Pretty Printing
 
-" Format json files
-" Write the file if a bang was passed in
-function! JsonClean(bang)
-    exec 'silent %!python -m json.tool'
+" Format file using passed-in command-line executable
+" Write the file if a bang is passed in
+function! PrettyPrint(bang, command)
+    exec a:command
     if v:shell_error
-        " Bail if Python returned 1
+        " Bail if command returned 1
         let error_text = join(getline(1, '$'), "\n")
         undo
         echo 'ERROR: ' . error_text
@@ -150,7 +150,20 @@ function! JsonClean(bang)
     end
 endfunction
 
-command! -n=0 -bang Jc :call JsonClean('<bang>')
+" JSON pretty printing. Requires Python
+function! JsonPrettyPrint(bang)
+    call PrettyPrint(a:bang, 'silent %!python -m json.tool')
+endfunction
+
+command! -n=0 -bang Jpp :call PrettyPrint('<bang>', 'silent %!python -m json.tool')
+
+" XML pretty printing. Requires xmllint
+function! XmlPrettyPrint(bang)
+    call PrettyPrint(a:bang, 'silent %!xmllint --format -')
+endfunction
+
+command! -n=0 -bang Xpp :call PrettyPrint('<bang>', 'silent %!xmllint --format -')
+
 
 "Disable middle mouse pastes
 nnoremap <MiddleMouse> <Nop>
