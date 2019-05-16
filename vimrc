@@ -18,7 +18,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 's3rvac/vim-syntax-redminewiki'
-Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vimwiki/vimwiki'
 Plugin 'ervandew/supertab'
@@ -33,8 +33,6 @@ packadd! matchit
 
 "Tryouts
 "Plugin 'git://git.wincent.com/command-t.git'
-"Plugin 'scrooloose/nerdcommenter'
-"Plugin 'tpope/vim-surround'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -221,3 +219,11 @@ let g:syntastic_ruby_rubocop_exec = "bundle"
 let g:syntastic_ruby_rubocop_args = "exec rubocop"
 
 let g:syntastic_php_phpcs_args = "--standard=PSR2 -n"
+
+" Ag aliases in ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+
+cnoreabbrev Ag Ack
+cnoreabbrev AgFile AckFile
